@@ -40,5 +40,8 @@ def get_sound_location(word, language_code):
     if len(_id) == 0:
         return ""
     else:
-        location = get_sound_location_by_id(_id)
+        try:
+            location = get_sound_location_by_id(_id)
+        except KeyError:
+            location = get_sound_location_by_id(_id)
         return location
