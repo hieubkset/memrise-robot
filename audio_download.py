@@ -16,14 +16,11 @@ def create_audio_file(word, language_code):
         except Exception:
             logging.error(traceback.format_exc())
             pass
-        # if not location:
-        #     print("TTS audio for: %s" % word)
-            # location = tts_location(word, language_code)
-
-    # else:
-    #     location = tts_location(word, language_code)
-
-
+        if not location:
+            print("TTS audio for: %s" % word)
+            location = tts_location(word, language_code)
+    else:
+        location = tts_location(word, language_code)
 
     if location:
         urlretrieve(location, TEMP_FILE_PATH)
