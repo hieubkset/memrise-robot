@@ -1,0 +1,9 @@
+TEXT_TO_SPEECH_SRC = 'https://soundoftext.com/api/sounds'
+SOUNDS_POST_CMD = '{{"engine": "Google", "data": {{"text": "{0}", "voice": "{1}"}}}}'
+TEMP_FILE_PATH = "/Volumes/Data/Todo/Python/MemriseRobot/audio/temp.mp3"
+ENGLISH_SRC = 'https://www.oxfordlearnersdictionaries.com/definition/english/'
+MEMRISE_HOME = "https://www.memrise.com/home/"
+USERNAME = 'memrise.robot'
+PASSWORD = 'hieu0611@'
+DELAY_TIME = 1
+PRONUNCIATION = False

@@ -1,0 +1,20 @@
+------WebKitFormBoundaryrgrHSjU5IpwVYdWs
+Content-Disposition: form-data; name="thing_id"
+
+178377519
+------WebKitFormBoundaryrgrHSjU5IpwVYdWs
+Content-Disposition: form-data; name="cell_id"
+
+3
+------WebKitFormBoundaryrgrHSjU5IpwVYdWs
+Content-Disposition: form-data; name="cell_type"
+
+column
+------WebKitFormBoundaryrgrHSjU5IpwVYdWs
+Content-Disposition: form-data; name="csrfmiddlewaretoken"
+
+kn1MbUaO0waAKXvQiiyjtVmQ1mHr4iWiW07Vz04YHvwtR7jG3ompnTOMLQrVKwIj
+------WebKitFormBoundaryrgrHSjU5IpwVYdWs
+Content-Disposition: form-data; name="f"; filename="symbolic__us_1.mp3"
+Content-Type: audio/mp3
+

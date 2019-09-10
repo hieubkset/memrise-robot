@@ -1,0 +1,13 @@
+Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding:gzip, deflate, br
+Accept-Language:en-US,en;q=0.9,vi-VN;q=0.8,vi;q=0.7
+Cache-Control:max-age=0
+Connection:keep-alive
+Content-Length:24169
+
+Cookie:sessionid=yvsy5yt0q1z6ausxgdot4escx81o4bu6;csrftoken=kn1MbUaO0waAKXvQiiyjtVmQ1mHr4iWiW07Vz04YHvwtR7jG3ompnTOMLQrVKwIj
+Host:www.memrise.com
+Origin:https://www.memrise.com
+Referer:https://www.memrise.com/course/1864484/ted/edit/
+
+User-Agent:Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36
