@@ -14,12 +14,12 @@ import re
 def memrise_login():
     """Login into memrise robot account"""
 
-    browser = webdriver.Chrome("/Volumes/Data/Todo/Python/MemriseRobot/chromedriver")
+    browser = webdriver.Chrome("./chrome/linux/chromedriver")
     browser.get(MEMRISE_HOME)
 
-    login_button = browser.find_element_by_css_selector("#header > div > ul > li:nth-child(2) > a")
-    login_button.click()
-    time.sleep(DELAY_TIME)
+    # login_button = browser.find_element_by_css_selector("#header > div > ul > li:nth-child(2) > a")
+    # login_button.click()
+    # time.sleep(DELAY_TIME)
 
     username_textfield = browser.find_element_by_css_selector("#login > div:nth-child(7) > input")
     username_textfield.send_keys(USERNAME)
@@ -28,7 +28,8 @@ def memrise_login():
     pass_textfield.send_keys(PASSWORD)
 
     login_button = browser.find_element_by_css_selector("#login > input.btn-success.btn-large")
-    login_button.click()
+    browser.execute_script("arguments[0].click();", login_button)
+    # login_button.click()
     time.sleep(DELAY_TIME)
 
     return browser
@@ -99,32 +100,9 @@ def memrise_page_upload(browser, memrise_page, language_code="en-US", format=Fal
             else:
                 print("Failed for word: %s" % word)
 
-        if PRONUNCIATION:
-            if not text_cells[3].text:
-                pronunciation = get_pronunciation(word)
-                if pronunciation:
-                    print("update pron: " + word)
-                    actions = ActionChains(browser)
-                    actions.move_to_element(text_cells[3])
-                    actions.click(text_cells[3])
-                    actions.click(text_cells[3])
-                    actions.click(text_cells[3])
-                    actions.send_keys(pronunciation)
-                    actions.perform()
-                else:
-                    print("Not found pronunciation for word: %s" % word)
-
-
-def is_database_memrise(url):
-    return True
-
 
 def memrise_upload(url, skip_page = 1, language_code="en-US"):
     """Download audio files for a memrise course"""
-
-    if not is_database_memrise(url):
-        print("Please enter a memrise database url!")
-        return False
 
     browser = memrise_login()
 
@@ -151,9 +129,8 @@ def memrise_upload(url, skip_page = 1, language_code="en-US"):
 
 if __name__ == "__main__":
     skip_page = 1
-    # tech = "https://www.memrise.com/course/1832011/tech/edit/database/2831228/"
-    ted2 = "https://www.memrise.com/course/1969984/ted-02/edit/#l_7297798"
-    # memrise_upload(ted2, skip_page)
-    url = "https://www.memrise.com/course/1990230/unit-1-385/edit/#l_7373882"
-    browser = memrise_login()
-    memrise_page_upload(browser, url)
+    url = "https://www.memrise.com/course/5545461/korean-sogang-1b/edit/database/6565682/"
+    language_code = 'ko-KR'
+    memrise_upload(url, skip_page, language_code)
+    # browser = memrise_login()
+    # memrise_page_upload(browser, url, language_code)
