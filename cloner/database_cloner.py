@@ -4,6 +4,11 @@ from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 import pickle
 import os
+from pandas import DataFrame
+
+
+def format(string):
+    return string.replace(',', '/')
 
 
 def get_level_urls(url):
@@ -44,6 +49,7 @@ def get_level_vocab(url):
         vocab = col_a.text
         col_b = row.select_one('div.col_b.col.text')
         meaning = col_b.text
+        meaning = format(meaning)
         vocab_bag['vocab'].append(vocab)
         vocab_bag['meaning'].append(meaning)
 
@@ -56,7 +62,16 @@ def get_lesson(url):
     for level_url in level_urls:
         level_name, vocab_bag = get_level_vocab(level_url)
         lesson[level_name] = vocab_bag
+        print('Cloned ' + level_name)
     return lesson
+
+
+def export_to_csv(lesson, save_folder_path):
+    for level_name in lesson.keys():
+        df = DataFrame(lesson[level_name])
+        save_path = os.path.join(save_folder_path, level_name + '.csv')
+        df.to_csv(save_path, index = None, header=False)
+        print('One level saved at ' + save_path)
 
 
 def database_cloner(url, save_folder_path):
@@ -65,6 +80,9 @@ def database_cloner(url, save_folder_path):
     save_path = os.path.join(save_folder_path, 'lesson.pkl')
 
     lesson = get_lesson(url)
+
+    export_to_csv(lesson, save_folder_path)
+
     lesson = {'url': url, 'lesson': lesson}
 
     with open(save_path, 'wb') as f:
@@ -75,7 +93,7 @@ def database_cloner(url, save_folder_path):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--root', type=str, default='https://www.memrise.com/course/131661/sogang-korean-new-series-1b-vocabulary-2/')
+    parser.add_argument('--root', type=str, default='https://www.memrise.com/course/43334/sogang-korean-new-series-1b-vocabulary/')
     parser.add_argument('--save', type=str, default='../lesson/')
     args = parser.parse_args()
 
