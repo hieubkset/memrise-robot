@@ -9,12 +9,15 @@ from constants import *
 import logging
 import traceback
 import re
+import platform
 
 
 def memrise_login():
     """Login into memrise robot account"""
-
-    browser = webdriver.Chrome("./chrome/linux/chromedriver")
+    if platform.system() == 'Darwin':
+        browser = webdriver.Chrome("./chrome/macos/chromedriver")
+    else:
+        browser = webdriver.Chrome("./chrome/linux/chromedriver")
     browser.get(MEMRISE_HOME)
 
     # login_button = browser.find_element_by_css_selector("#header > div > ul > li:nth-child(2) > a")
