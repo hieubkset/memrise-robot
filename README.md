@@ -11,14 +11,14 @@ Bước 1: Thêm người dùng **memrise.robot** là cộng tác viên của kh
 Bước 2: Tải và cài đặt chương trình.
 
 Tải chương trình:
-***
+```
 git clone https://github.com/hieubkset/MemriseRobot.git
-***
+```
 
 Cài đặt các thư viện phụ thuộc:
-***
+```
 pip install requirements.txt
-***
+```
 
 Bước 3: Tải chương trình chromedriver
 
@@ -34,13 +34,13 @@ Sau đó, lưu **ChromeDriver** vào thư mục trong dự án. Cụ thể:
 + chrome/windows: cho hệ điều hành windows
 
 Bước 4: Thay đổi các giá trị cấu hình
-***
+```
 if __name__ == "__main__":
     start_page = 1
     language_code = 'en-US'
     url = "https://app.memrise.com/course/6235501/pmp/edit/database/7281972/"
     memrise_upload(url, start_page, language_code)
-***
+```
 Trong đó:
 + start_page: thiết lập giá trị này để bỏ qua các page đã có audio để rút ngắn thời gian xử lý, giá trị mặc định là 1.
 + language_code: chọn một trong hai giá trị _en-US_ (Anh Mỹ) hoặc _en-BE_ (Anh Anh).
