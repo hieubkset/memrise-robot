@@ -22,7 +22,7 @@ def get_sound_id(word, language_code):
     return _id
 
 
-def get_sound_location_by_id(_id):
+def get_sound_url_by_id(_id):
     """Get location of a created audio from it's id"""
 
     url = TEXT_TO_SPEECH_SRC + "/" + _id
@@ -33,7 +33,7 @@ def get_sound_location_by_id(_id):
     return location
 
 
-def get_sound_location(word, language_code):
+def get_sound_url(word, language_code):
     """Get location of an word from any country"""
 
     _id = get_sound_id(word, language_code)
@@ -41,7 +41,7 @@ def get_sound_location(word, language_code):
         return ""
     else:
         try:
-            location = get_sound_location_by_id(_id)
+            location = get_sound_url_by_id(_id)
         except KeyError:
-            location = get_sound_location_by_id(_id)
+            location = get_sound_url_by_id(_id)
         return location
