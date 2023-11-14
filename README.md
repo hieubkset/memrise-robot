@@ -33,10 +33,16 @@ Sau đó, lưu **ChromeDriver** vào thư mục trong dự án. Cụ thể:
 + chrome/macos: cho hệ điều hành macos
 + chrome/windows: cho hệ điều hành windows
 
-Bước 4: 
+Bước 4: Thay đổi các giá trị cấu hình
+***
+if __name__ == "__main__":
+    start_page = 1
+    language_code = 'en-US'
+    url = "https://app.memrise.com/course/6235501/pmp/edit/database/7281972/"
+    memrise_upload(url, start_page, language_code)
+***
+Trong đó:
++ start_page: thiết lập giá trị này để bỏ qua các page đã có audio để rút ngắn thời gian xử lý, giá trị mặc định là 1.
++ language_code: chọn một trong hai giá trị _en-US_ (Anh Mỹ) hoặc _en-BE_ (Anh Anh).
++ url: đường dẫn tới khóa học, lưu ý phải có chữ _database_ trong đường dẫn mới đúng.
 
-
-
-1. Verify chromeddriver file is same version with your chrome browser
-
-2. Select appropriate language code, for example: ko-KR (Korean), en-US (American English)

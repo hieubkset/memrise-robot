@@ -7,7 +7,7 @@ def format_word(word):
     return word.replace(" ", "-")
 
 
-def get_sound_location(word, language_code="en-US"):
+def get_sound_url(word, language_code="en-US"):
     """Get an audio url of word from the Oxford site"""
     headers={'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"}
     url = ENGLISH_SRC + format_word(word)
@@ -20,12 +20,10 @@ def get_sound_location(word, language_code="en-US"):
     else:
         audio_divs = soup.find_all("div", {"class": "sound audio_play_button pron-uk icon-audio"})
 
-    if len(audio_divs) == 0:
-        return ""
-
-    else:
-        location = audio_divs[0]["data-src-mp3"]
-        return location
+    if len(audio_divs) > 0:
+        sound_url = audio_divs[0]["data-src-mp3"]
+        return sound_url
+    return None
 
 
 def get_pronunciation(word, language_code="en-US"):

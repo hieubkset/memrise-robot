@@ -1,6 +1,5 @@
 from utils import login_memrise, is_contributor, find_number_of_page, has_audio, get_url, get_rows_of_word, get_word, upload_audio
 from audio_download import create_audio_file
-from english_download import get_pronunciation
 from config import *
 import logging
 import logging
@@ -21,8 +20,9 @@ def memrise_page_upload(browser, memrise_page, language_code="en-US"):
         word = get_word(row)
  
         if not has_audio(row):
-            if create_audio_file(word, language_code):
-                upload_audio()
+            audio_file_path  = create_audio_file(word, language_code)
+            if audio_file_path is not None:
+                upload_audio(row, audio_file_path)
                 logger.info('Upload an audio file for ' + word)
             else:
                 logger.error("Failed for word: %s" % word)
@@ -48,7 +48,7 @@ def memrise_upload(url, start_page=1, language_code="en-US"):
             if number_of_page == -1:
                 memrise_page_upload(browser, url, language_code)
             else:
-                for i in (start_page, number_of_page + 1):
+                for i in range(start_page, number_of_page + 1):
                     page_url = url + "?page=" + str(i)
                     memrise_page_upload(browser, page_url, language_code)
 

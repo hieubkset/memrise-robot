@@ -126,7 +126,7 @@ def get_word(row):
     return word
 
 
-def upload_audio(row):
+def upload_audio(row, audio_file_path):
     text_cells = row.find_elements(By.CLASS_NAME, "cell")
-    upload_button = text_cells[2].find_elemente(By.CLASS_NAME, "add_thing_file")
-    upload_button.send_keys(TEMP_FILE_PATH)
+    upload_button = text_cells[2].find_element(By.CLASS_NAME, "add_thing_file")
+    upload_button.send_keys(audio_file_path)
