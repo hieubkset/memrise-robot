@@ -46,3 +46,7 @@ Trong đó:
 + language_code: chọn một trong hai giá trị _en-US_ (Anh Mỹ) hoặc _en-BE_ (Anh Anh).
 + url: đường dẫn tới khóa học, lưu ý phải có chữ _database_ trong đường dẫn mới đúng.
 
+Bước 5: Chạy chương trình
+```
+python main.py
+```
