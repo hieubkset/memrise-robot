@@ -1,9 +1,6 @@
 from bs4 import BeautifulSoup
-from urllib.request import urlopen
 from config import *
-import logging
-import traceback
-import ssl
+import requests
 
 
 def format_word(word):
@@ -12,19 +9,10 @@ def format_word(word):
 
 def get_sound_location(word, language_code="en-US"):
     """Get an audio url of word from the Oxford site"""
-    # BUG HERE
-    # OXFORD FORBIDEN
-    context = ssl.create_default_context()
-    context.check_hostname = False
-    context.verify_mode = ssl.CERT_NONE
-
+    headers={'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"}
     url = ENGLISH_SRC + format_word(word)
-    try:
-        f = urlopen(url, context = context)
-    except:
-        logging.error(traceback.format_exc())
-        return ""
-    html = f.read()
+    response = requests.get(url, headers=headers)
+    html = response.text
     soup = BeautifulSoup(html, "html.parser")
 
     if language_code == "en-US":
@@ -42,28 +30,22 @@ def get_sound_location(word, language_code="en-US"):
 
 def get_pronunciation(word, language_code="en-US"):
     url = ENGLISH_SRC + format_word(word)
-    f = urlopen(url)
-    html = f.read()
+    headers={'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"}
+    response = requests.get(url, headers=headers)
+    html = response.text
     soup = BeautifulSoup(html, "html.parser")
-
     if language_code == "en-US":
         ind = 'NAmE'
-        pronunciations = soup.find_all("span", {"class": "phon"})
+        pronunciation_div = soup.find("div", class_="phons_n_am")
     else:
         ind = 'BrE'
-        pronunciations = soup.find_all("div", {"class": "phone"})
+        pronunciation_div = soup.find("div", class_="phons_br")
 
-    if len(pronunciations):
-        for pron in pronunciations:
-            if ind in pron.text:
-                p = pron.text
-                p = p.replace("NAmE", "")
-                p = p.replace("//", "")
-                return p
+    pronunciation  = pronunciation_div.find('span').text
 
-    return ""
+    return pronunciation
 
 
 if __name__ == "__main__":
-    pronunciation = get_pronunciation("hello")
+    pronunciation = get_sound_location("numerous")
     print(pronunciation)
