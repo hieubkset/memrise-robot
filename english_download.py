@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
-from constants import *
+from config import *
 import logging
 import traceback
 import ssl
@@ -12,7 +12,8 @@ def format_word(word):
 
 def get_sound_location(word, language_code="en-US"):
     """Get an audio url of word from the Oxford site"""
-
+    # BUG HERE
+    # OXFORD FORBIDEN
     context = ssl.create_default_context()
     context.check_hostname = False
     context.verify_mode = ssl.CERT_NONE
@@ -41,10 +42,7 @@ def get_sound_location(word, language_code="en-US"):
 
 def get_pronunciation(word, language_code="en-US"):
     url = ENGLISH_SRC + format_word(word)
-    try:
-        f = urlopen(url)
-    except:
-        return ""
+    f = urlopen(url)
     html = f.read()
     soup = BeautifulSoup(html, "html.parser")
 
@@ -67,5 +65,5 @@ def get_pronunciation(word, language_code="en-US"):
 
 
 if __name__ == "__main__":
-    pronunciation = get_pronunciation("afsa")
+    pronunciation = get_pronunciation("hello")
     print(pronunciation)

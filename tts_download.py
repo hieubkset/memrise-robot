@@ -1,4 +1,4 @@
-from constants import *
+from config import *
 import requests
 import json
 from json.decoder import JSONDecodeError
