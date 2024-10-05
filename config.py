@@ -13,7 +13,7 @@ RELATIVE_TEMP_FILE_PATH = "audio/temp.mp3"
 TEMP_FILE_PATH = os.path.join(cwd, RELATIVE_TEMP_FILE_PATH)
 #
 ENGLISH_SRC = 'https://www.oxfordlearnersdictionaries.com/definition/english/'
-MEMRISE_HOMEPAGE_URL = "https://www.memrise.com/home/"
+MEMRISE_HOMEPAGE_URL = "https://community-courses.memrise.com/"
 USERNAME = 'memrise.robot'
 PASSWORD = '123456'
 DELAY_TIME = 1.5

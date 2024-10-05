@@ -66,14 +66,14 @@ def login_memrise():
         logging.info('Can not find the password field.')
         return None
 
+    pass_textfield.send_keys(PASSWORD)
+    username_textfield.send_keys(USERNAME)
+
     login_button = find_element_with_retry(
         browser, By.CSS_SELECTOR, "button[type='submit']")
     if login_button is None:
         logging.info('Can not find the loggin button.')
         return None
-
-    pass_textfield.send_keys(PASSWORD)
-    username_textfield.send_keys(USERNAME)
     click_login(browser, login_button)
 
     return browser

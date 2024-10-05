@@ -10,7 +10,7 @@ def create_audio_file(word, language_code):
 
     sound_url = oxford_audio_url(word, language_code)
     if sound_url is None:
-        print("TTS audio for: %s" % word)
+        logging.info("TTS audio for: %s" % word)
         sound_url = tts_audio_url(word, language_code)
  
     if sound_url:
